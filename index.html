@@ -1657,20 +1657,34 @@ async function openProject(index) {
         const repoBase =
             `https://raw.githubusercontent.com/${githubUsername}/${project.repository}/main/`;
         
-        
-        /* Fix Markdown image paths */
         markdown = markdown.replace(
-            /!\[(.*?)\]\((?!https?:\/\/)(\.\/)?(.*?)\)/g,
-            `![$1](${repoBase}$3)`
+            /!\[([^\]]*)\]\((?!https?:\/\/)([^)]+)\)/g,
+            (match, alt, path) => {
+        
+                path = path.replace(/^\.\//, "");
+        
+                const encodedPath = path
+                    .split("/")
+                    .map(part => encodeURIComponent(part))
+                    .join("/");
+        
+                return `![${alt}](${repoBase}${encodedPath})`;
+            }
         );
-        
-        
-        /* Fix HTML image paths */
         markdown = markdown.replace(
-            /src=["'](?!https?:\/\/)(\.\/)?([^"']+)["']/g,
-            `src="${repoBase}$2"`
-        );
+            /<img([^>]*?)src=["'](?!https?:\/\/)([^"']+)["']([^>]*)>/gi,
+            (match, before, path, after) => {
         
+                path = path.replace(/^\.\//, "");
+        
+                const encodedPath = path
+                    .split("/")
+                    .map(part => encodeURIComponent(part))
+                    .join("/");
+        
+                return `<img${before}src="${repoBase}${encodedPath}"${after}>`;
+            }
+        );
         
         content.innerHTML = marked.parse(markdown);
 
