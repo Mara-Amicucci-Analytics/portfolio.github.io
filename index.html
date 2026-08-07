@@ -1622,131 +1622,90 @@ projects.forEach(
    OPEN PROJECT
 ===================================================== */
 
-
 async function openProject(index) {
 
+    const project = projects[index];
 
-    const project =
-        projects[index];
+    document.getElementById("home-view").style.display = "none";
+    document.getElementById("project-view").style.display = "block";
 
+    document.getElementById("project-title").textContent = project.title;
 
-    document.getElementById(
-        "home-view"
-    ).style.display =
-        "none";
+    const content = document.getElementById("readme-content");
 
-
-    document.getElementById(
-        "project-view"
-    ).style.display =
-        "block";
-
-
-    document.getElementById(
-        "project-title"
-    ).textContent =
-        project.title;
-
-
-    const content =
-        document.getElementById(
-            "readme-content"
-        );
-
-
-    content.innerHTML =
-        "Loading project...";
-
-
-    /*
-       Loads README.md directly
-       from the project's GitHub repository.
-    */
+    content.innerHTML = "Loading project...";
 
     const readmeURL =
+        `https://raw.githubusercontent.com/Mara-Amicucci-Analytics/${project.repository}/main/README.md`;
 
-        `https://raw.githubusercontent.com/${githubUsername}/${project.repository}/main/README.md`;
-
+    console.log("Loading README from:", readmeURL);
 
     try {
 
+        const response = await fetch(readmeURL);
 
-        const response =
-            await fetch(
-                readmeURL
-            );
-
+        console.log("Response:", response.status);
 
         if (!response.ok) {
-
             throw new Error(
-                "README could not be loaded."
+                `README request failed: ${response.status} ${response.statusText}`
             );
-
         }
 
+        let markdown = await response.text();
 
-        let markdown =
-            await response.text();
-
-
-        /*
-           Fix relative image URLs inside README.
-
-           Example:
-
-           images/dashboard.png
-
-           becomes:
-
-           raw.githubusercontent.com/.../images/dashboard.png
-        */
-
+        console.log("README loaded successfully");
 
         const repoBase =
+            `https://raw.githubusercontent.com/Mara-Amicucci-Analytics/${project.repository}/main/`;
 
-            `https://raw.githubusercontent.com/${githubUsername}/${project.repository}/main/`;
-
-
-        markdown =
-            markdown.replace(
-                /!\[(.*?)\]\((?!https?:\/\/)(.*?)\)/g,
-                `![$1](${repoBase}$2)`
-            );
-
-
-        content.innerHTML =
-            marked.parse(
-                markdown
-            );
-
-
-        window.scrollTo(
-            0,
-            0
+        /* Fix relative images */
+        markdown = markdown.replace(
+            /!\[(.*?)\]\((?!https?:\/\/)(.*?)\)/g,
+            `![$1](${repoBase}$2)`
         );
 
+        /* Check that Marked loaded */
+        if (typeof marked === "undefined") {
+            throw new Error(
+                "Markdown renderer did not load."
+            );
+        }
+
+        content.innerHTML = marked.parse(markdown);
+
+        window.scrollTo({
+            top: 0,
+            behavior: "instant"
+        });
 
     }
 
     catch(error) {
 
+        console.error(error);
 
         content.innerHTML = `
-
-            <h2>
-                Project unavailable
-            </h2>
+            <h2>Project unavailable</h2>
 
             <p>
-                The project README could not
-                be loaded.
+                The project README could not be loaded.
             </p>
 
+            <p style="
+                margin-top:20px;
+                padding:15px;
+                background:#f8fafc;
+                border:1px solid #e2e8f0;
+                border-radius:8px;
+                font-family:monospace;
+                font-size:13px;
+            ">
+                ${error.message}
+            </p>
         `;
 
     }
-
 }
 
 
