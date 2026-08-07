@@ -1654,24 +1654,24 @@ async function openProject(index) {
 
         let markdown = await response.text();
 
-        console.log("README loaded successfully");
-
         const repoBase =
-            `https://raw.githubusercontent.com/Mara-Amicucci-Analytics/${project.repository}/main/`;
-
-        /* Fix relative images */
+            `https://raw.githubusercontent.com/${githubUsername}/${project.repository}/main/`;
+        
+        
+        /* Fix Markdown image paths */
         markdown = markdown.replace(
-            /!\[(.*?)\]\((?!https?:\/\/)(.*?)\)/g,
-            `![$1](${repoBase}$2)`
+            /!\[(.*?)\]\((?!https?:\/\/)(\.\/)?(.*?)\)/g,
+            `![$1](${repoBase}$3)`
         );
-
-        /* Check that Marked loaded */
-        if (typeof marked === "undefined") {
-            throw new Error(
-                "Markdown renderer did not load."
-            );
-        }
-
+        
+        
+        /* Fix HTML image paths */
+        markdown = markdown.replace(
+            /src=["'](?!https?:\/\/)(\.\/)?([^"']+)["']/g,
+            `src="${repoBase}$2"`
+        );
+        
+        
         content.innerHTML = marked.parse(markdown);
 
         window.scrollTo({
