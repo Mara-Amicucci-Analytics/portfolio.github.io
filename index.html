@@ -358,10 +358,17 @@
             margin-bottom: 18px;
         }
 
-        .skills-section {
+        #skills {
             width: 100%;
-            margin-top: 52px;
+            padding: 54px 0 72px;
             scroll-margin-top: 80px;
+            background: white;
+        }
+
+        .skills-container {
+            width: 94%;
+            max-width: none;
+            margin: 0 auto;
         }
 
         .skills-title {
@@ -724,7 +731,20 @@
 
         @media(max-width:1100px) {
             .skills-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+                gap: 10px;
+            }
+
+            .skill {
+                padding: 14px 10px;
+            }
+
+            .skill strong {
+                font-size: 0.82rem;
+            }
+
+            .skill span {
+                font-size: 0.66rem;
             }
         }
 
@@ -984,50 +1004,55 @@
             </div>
 
         </div>
+    </div>
+
+</section>
 
 
-        <div class="skills-section" id="skills">
+<!-- SKILLS -->
 
-            <div class="section-label">
-                Skills
+<section id="skills">
+
+    <div class="skills-container">
+
+        <div class="section-label">
+            Skills
+        </div>
+
+        <h2 class="skills-title">
+            Technical skills
+        </h2>
+
+        <div class="skills-grid">
+
+            <div class="skill">
+                <strong>Power BI</strong>
+                <span>DAX · Power Query · Data Modelling</span>
             </div>
 
-            <h2 class="skills-title">
-                Technical skills
-            </h2>
+            <div class="skill">
+                <strong>SQL</strong>
+                <span>PostgreSQL · CTEs · Window Functions</span>
+            </div>
 
-            <div class="skills-grid">
+            <div class="skill">
+                <strong>Python</strong>
+                <span>Pandas · APIs · Automation</span>
+            </div>
 
-                <div class="skill">
-                    <strong>Power BI</strong>
-                    <span>DAX · Power Query · Data Modelling</span>
-                </div>
+            <div class="skill">
+                <strong>Power Platform</strong>
+                <span>Power Automate · Power Apps</span>
+            </div>
 
-                <div class="skill">
-                    <strong>SQL</strong>
-                    <span>PostgreSQL · CTEs · Window Functions</span>
-                </div>
+            <div class="skill">
+                <strong>Data Analysis</strong>
+                <span>KPIs · Cohorts · Trends · A/B Testing</span>
+            </div>
 
-                <div class="skill">
-                    <strong>Python</strong>
-                    <span>Pandas · APIs · Automation</span>
-                </div>
-
-                <div class="skill">
-                    <strong>Power Platform</strong>
-                    <span>Power Automate · Power Apps</span>
-                </div>
-
-                <div class="skill">
-                    <strong>Data Analysis</strong>
-                    <span>KPIs · Cohorts · Trends · A/B Testing</span>
-                </div>
-
-                <div class="skill">
-                    <strong>Business Insight</strong>
-                    <span>Commercial · Customer · Operations</span>
-                </div>
-
+            <div class="skill">
+                <strong>Business Insight</strong>
+                <span>Commercial · Customer · Operations</span>
             </div>
 
         </div>
