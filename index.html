@@ -331,12 +331,9 @@
            ABOUT
         ================================ */
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 65px;
+        #about {
+            scroll-margin-top: 72px;
         }
-
 
         .about-title {
             font-size: clamp(2rem, 4vw, 3.2rem);
@@ -345,91 +342,57 @@
             margin: 0 0 38px;
         }
 
-        .about-column,
-        .skills-column {
-            min-width: 0;
-        }
-
-
-        .about-text-columns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 65px;
-            max-width: 100%;
-        }
-
-        .skills-section {
-            margin-top: 58px;
-            padding-top: 4px;
-            scroll-margin-top: 82px;
-        }
-
-        .skills-title {
-            font-size: clamp(1.8rem, 3vw, 2.5rem);
-            letter-spacing: -0.035em;
-            line-height: 1.1;
-            margin: 0 0 24px;
-        }
-
-        .skills-inline {
-            grid-template-columns: repeat(6, 1fr);
-            gap: 10px;
-        }
-
-        .skills-inline .skill {
-            padding: 15px 14px;
-            min-width: 0;
-        }
-
-        .skills-inline .skill strong {
-            font-size: 0.92rem;
-        }
-
-        .skills-inline .skill span {
-            font-size: 0.72rem;
-            line-height: 1.4;
-        }
-
         .about-text {
             color: var(--text-light);
             font-size: 1.05rem;
         }
 
+        .about-text-columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 65px;
+        }
 
         .about-text p {
             margin-bottom: 18px;
         }
 
+        .skills-section {
+            margin-top: 52px;
+            scroll-margin-top: 82px;
+        }
+
+        .skills-title {
+            font-size: 1.55rem;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin: 0 0 20px;
+        }
 
         .skills-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(2,1fr);
-
-            gap: 12px;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
         }
 
-
         .skill {
-            padding: 17px 18px;
+            padding: 15px 14px;
             background: white;
             border: 1px solid var(--border);
             border-radius: 11px;
+            min-width: 0;
         }
-
 
         .skill strong {
             display: block;
-
             margin-bottom: 4px;
+            font-size: 0.9rem;
         }
-
 
         .skill span {
             color: var(--text-light);
-
-            font-size: 0.8rem;
+            font-size: 0.7rem;
+            line-height: 1.4;
         }
 
 
@@ -757,7 +720,7 @@
 
 
         @media(max-width:1100px) {
-            .skills-inline {
+            .skills-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
         }
@@ -768,18 +731,15 @@
                 gap: 0;
             }
 
-            .skills-inline {
+            .skills-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media(max-width:900px) {
 
-            .hero-grid,
-            .about-grid {
-
-                grid-template-columns:
-                    1fr;
+            .hero-grid {
+                grid-template-columns: 1fr;
             }
 
 
@@ -1033,7 +993,7 @@
                 Technical skills
             </h2>
 
-            <div class="skills-grid skills-inline">
+            <div class="skills-grid">
 
                 <div class="skill">
                     <strong>Power BI</strong>
@@ -1207,10 +1167,10 @@ const projects = [
             "Analysed renewal performance using campaign and control groups, testing different offers across customer cohorts to identify which approach generated the strongest recontract rate.",
 
         image:
-            "images/renewal-analysis.png",
+            "images/p3.png",
 
         repository:
-            "Power-BI-A-B-Testing-Analysis"
+            "portfolio.github.io"
 
     },
 
@@ -1227,10 +1187,10 @@ const projects = [
             "Replaced a manual reporting process with an automated Python, PostgreSQL and Power BI pipeline, reducing preparation time and manual intervention.",
 
         image:
-            "images/reporting-pipeline.png",
+            "images/p1.png",
 
         repository:
-            "Automated-Reporting-ETL-Pipeline"
+            "portfolio.github.io"
 
     },
 
@@ -1247,10 +1207,10 @@ const projects = [
             "Built an operational reporting solution combining multiple data sources and business rules to identify blocked orders, ownership and required actions.",
 
         image:
-            "images/order-management.png",
+            "images/p4.png",
 
         repository:
-            "YOUR-REPOSITORY-NAME-3"
+            "portfolio.github.io"
 
     },
 
@@ -1267,10 +1227,10 @@ const projects = [
             "Automated customer communication workflows using CRM data, validation rules and APIs while creating clear reporting and auditability.",
 
         image:
-            "images/customer-automation.png",
+            "images/p2.png",
 
         repository:
-            "YOUR-REPOSITORY-NAME-4"
+            "portfolio.github.io"
 
     }
 
