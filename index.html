@@ -99,11 +99,10 @@
 
 
         .nav-inner {
-            height: 72px;
-
+            height: 64px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
 
@@ -119,11 +118,13 @@
 
 
         .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             align-items: center;
             gap: 28px;
-
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             font-weight: 600;
         }
 
@@ -271,6 +272,10 @@
             padding: 72px 0;
         }
 
+        section[id] {
+            scroll-margin-top: 72px;
+        }
+
 
         .section-heading {
             max-width: 700px;
@@ -311,6 +316,15 @@
             color: var(--text-light);
         }
 
+        .compact-heading {
+            margin-bottom: 28px;
+        }
+
+        .compact-heading h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 10px;
+        }
+
 
         /* ================================
            ABOUT
@@ -318,17 +332,26 @@
 
         .about-grid {
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 65px;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: start;
         }
 
 
+        .about-title {
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            margin: 0 0 38px;
+        }
+
+        .about-column,
+        .skills-column {
+            min-width: 0;
+        }
+
         .about-text {
             color: var(--text-light);
-
             font-size: 1.05rem;
         }
 
@@ -349,12 +372,9 @@
 
 
         .skill {
-            padding: 19px;
-
+            padding: 17px 18px;
             background: white;
-
             border: 1px solid var(--border);
-
             border-radius: 11px;
         }
 
@@ -379,17 +399,15 @@
 
         #projects {
             background: var(--background);
+            padding: 54px 0 62px;
+            scroll-margin-top: 72px;
         }
 
 
         .projects-grid {
-
             display: grid;
-
-            grid-template-columns:
-                repeat(2,1fr);
-
-            gap: 28px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
         }
 
 
@@ -413,73 +431,50 @@
 
 
         .project-image {
-
             width: 100%;
-
-            height: 230px;
-
+            height: 135px;
             object-fit: cover;
-
             background: #e2e8f0;
         }
 
 
         .project-content {
-
-            padding: 27px;
-
+            padding: 18px 20px 20px;
             display: flex;
-
             flex-direction: column;
-
             flex-grow: 1;
         }
 
 
         .project-category {
-
-            font-size: 0.72rem;
-
+            font-size: 0.68rem;
             font-weight: 800;
-
             color: var(--blue);
-
             text-transform: uppercase;
-
-            letter-spacing: 0.08em;
-
-            margin-bottom: 10px;
+            letter-spacing: 0.07em;
+            margin-bottom: 7px;
         }
 
 
         .project-card h3 {
-
-            font-size: 1.35rem;
-
-            letter-spacing: -0.025em;
-
-            margin-bottom: 10px;
+            font-size: 1.12rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 7px;
         }
 
 
         .project-card p {
-
             color: var(--text-light);
-
-            font-size: 0.9rem;
-
-            margin-bottom: 22px;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            margin-bottom: 14px;
         }
 
 
         .project-link {
-
             margin-top: auto;
-
             color: var(--blue);
-
-            font-size: 0.85rem;
-
+            font-size: 0.8rem;
             font-weight: 700;
         }
 
@@ -731,25 +726,44 @@
 
 
             .projects-grid {
-
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
         }
 
 
+        @media(max-width:700px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media(max-width:650px) {
 
             .nav-inner {
+                min-height: 60px;
                 height: auto;
-                min-height: 64px;
-                gap: 18px;
+                gap: 14px;
+                justify-content: space-between;
+            }
+
+            .logo {
+                flex-shrink: 0;
             }
 
             .nav-links {
-                gap: 12px;
-                font-size: 0.78rem;
+                position: static;
+                transform: none;
+                gap: 14px;
+                font-size: 0.76rem;
+                overflow-x: auto;
+                white-space: nowrap;
+                scrollbar-width: none;
+                padding: 18px 0;
+            }
+
+            .nav-links::-webkit-scrollbar {
+                display: none;
             }
 
             .skills-grid {
@@ -770,7 +784,7 @@
 
 
             .project-image {
-                height: 190px;
+                height: 120px;
             }
 
         }
@@ -802,12 +816,16 @@
 
         <div class="nav-links">
 
-            <a href="#about" onclick="showHome()">
-                About
+            <a href="#" onclick="showHome()">
+                Home
             </a>
 
             <a href="#projects" onclick="showHome()">
                 Projects
+            </a>
+
+            <a href="#about" onclick="showHome()">
+                About
             </a>
 
             <a href="#skills" onclick="showHome()">
@@ -878,7 +896,7 @@
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="section-heading compact-heading">
 
             <div class="section-label">
                 Portfolio
@@ -914,120 +932,85 @@
 
     <div class="container">
 
-        <div class="section-heading">
-
-            <div class="section-label">
-                About me
-            </div>
-
-            <h2>
-                About me
-            </h2>
-
-        </div>
-
-
         <div class="about-grid">
 
+            <div class="about-column">
 
-            <div class="about-text">
+                <div class="section-label">
+                    About me
+                </div>
 
-                <p>
-                    I work across data analysis, business intelligence and automation,
-                    with a strong focus on turning operational and customer data into
-                    useful information.
-                </p>
+                <h2 class="about-title">
+                    About me
+                </h2>
 
-                <p>
-                    I enjoy understanding the real business problem behind a request
-                    and building solutions that are clear, practical and easy to use.
-                </p>
+                <div class="about-text">
 
-                <p>
-                    The projects on this site are simplified and anonymised examples
-                    of real analytical work.
-                </p>
+                    <p>
+                        I work across data analysis, business intelligence and automation,
+                        with a strong focus on turning operational and customer data into
+                        useful information.
+                    </p>
+
+                    <p>
+                        I enjoy understanding the real business problem behind a request
+                        and building solutions that are clear, practical and easy to use.
+                    </p>
+
+                    <p>
+                        The projects on this site are simplified and anonymised examples
+                        of real analytical work.
+                    </p>
+
+                </div>
 
             </div>
 
 
+            <div class="skills-column" id="skills">
 
-            <div>
-                <div class="section-label" style="margin-bottom:16px;">
+                <div class="section-label">
                     Skills
                 </div>
 
-                <div
-                    class="skills-grid"
-                    id="skills"
-                >
+                <h2 class="about-title">
+                    Technical skills
+                </h2>
 
-                <div class="skill">
+                <div class="skills-grid">
 
-                    <strong>Power BI</strong>
+                    <div class="skill">
+                        <strong>Power BI</strong>
+                        <span>DAX · Power Query · Data Modelling</span>
+                    </div>
 
-                    <span>
-                        DAX · Power Query · Data Modelling
-                    </span>
+                    <div class="skill">
+                        <strong>SQL</strong>
+                        <span>PostgreSQL · CTEs · Window Functions</span>
+                    </div>
 
-                </div>
+                    <div class="skill">
+                        <strong>Python</strong>
+                        <span>Pandas · APIs · Automation</span>
+                    </div>
 
+                    <div class="skill">
+                        <strong>Power Platform</strong>
+                        <span>Power Automate · Power Apps</span>
+                    </div>
 
-                <div class="skill">
+                    <div class="skill">
+                        <strong>Data Analysis</strong>
+                        <span>KPIs · Cohorts · Trends · A/B Testing</span>
+                    </div>
 
-                    <strong>SQL</strong>
-
-                    <span>
-                        PostgreSQL · CTEs · Window Functions
-                    </span>
-
-                </div>
-
-
-                <div class="skill">
-
-                    <strong>Python</strong>
-
-                    <span>
-                        Pandas · APIs · Automation
-                    </span>
-
-                </div>
-
-
-                <div class="skill">
-
-                    <strong>Power Platform</strong>
-
-                    <span>
-                        Power Automate · Power Apps
-                    </span>
+                    <div class="skill">
+                        <strong>Business Insight</strong>
+                        <span>Commercial · Customer · Operations</span>
+                    </div>
 
                 </div>
 
-
-                <div class="skill">
-
-                    <strong>Data Analysis</strong>
-
-                    <span>
-                        KPIs · Cohorts · Trends · A/B Testing
-                    </span>
-
-                </div>
-
-
-                <div class="skill">
-
-                    <strong>Business Insight</strong>
-
-                    <span>
-                        Commercial · Customer · Operations
-                    </span>
-
-                </div>
-
-                </div>
             </div>
 
         </div>
