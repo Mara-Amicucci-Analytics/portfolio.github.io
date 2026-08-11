@@ -48,7 +48,6 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 78px;
         }
 
 
@@ -331,9 +330,13 @@
            ABOUT
         ================================ */
 
-        #about {
-            scroll-margin-top: 72px;
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 70px;
+            align-items: start;
         }
+
 
         .about-title {
             font-size: clamp(2rem, 4vw, 3.2rem);
@@ -342,57 +345,49 @@
             margin: 0 0 38px;
         }
 
+        .about-column,
+        .skills-column {
+            min-width: 0;
+        }
+
         .about-text {
             color: var(--text-light);
             font-size: 1.05rem;
         }
 
-        .about-text-columns {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 65px;
-        }
 
         .about-text p {
             margin-bottom: 18px;
         }
 
-        .skills-section {
-            margin-top: 52px;
-            scroll-margin-top: 82px;
-        }
-
-        .skills-title {
-            font-size: 1.55rem;
-            letter-spacing: -0.025em;
-            line-height: 1.1;
-            margin: 0 0 20px;
-        }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(6, minmax(0, 1fr));
             gap: 10px;
         }
 
+
         .skill {
-            padding: 15px 14px;
+            padding: 14px 12px;
             background: white;
             border: 1px solid var(--border);
             border-radius: 11px;
             min-width: 0;
         }
 
+
         .skill strong {
             display: block;
+
             margin-bottom: 4px;
-            font-size: 0.9rem;
         }
+
 
         .skill span {
             color: var(--text-light);
-            font-size: 0.7rem;
-            line-height: 1.4;
+            font-size: 0.72rem;
+            line-height: 1.35;
         }
 
 
@@ -718,33 +713,19 @@
            MOBILE
         ================================ */
 
-
-        @media(max-width:1100px) {
-            .skills-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media(max-width:750px) {
-            .about-text-columns {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
         @media(max-width:900px) {
 
-            .hero-grid {
+            .hero-grid,
+            .about-grid {
                 grid-template-columns: 1fr;
             }
-
 
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
 
         }
@@ -785,8 +766,7 @@
             }
 
             .skills-grid {
-                grid-template-columns:
-                    1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
 
@@ -846,7 +826,7 @@
                 About
             </a>
 
-            <a href="#skills" onclick="showHome()">
+            <a href="#about" onclick="showHome()">
                 Skills
             </a>
 
@@ -950,79 +930,83 @@
 
     <div class="container">
 
-        <div class="section-label">
-            About me
-        </div>
+        <div class="about-grid">
 
-        <h2 class="about-title">
-            About me
-        </h2>
+            <div class="about-column">
 
-        <div class="about-text about-text-columns">
+                <div class="section-label">
+                    About me
+                </div>
 
-            <div>
-                <p>
-                    I work across data analysis, business intelligence and automation,
-                    with a strong focus on turning operational and customer data into
-                    useful information.
-                </p>
+                <h2 class="about-title">
+                    About me
+                </h2>
 
-                <p>
-                    I enjoy understanding the real business problem behind a request
-                    and building solutions that are clear, practical and easy to use.
-                </p>
+                <div class="about-text">
+
+                    <p>
+                        I work across data analysis, business intelligence and automation,
+                        with a strong focus on turning operational and customer data into
+                        useful information.
+                    </p>
+
+                    <p>
+                        I enjoy understanding the real business problem behind a request
+                        and building solutions that are clear, practical and easy to use.
+                    </p>
+
+                    <p>
+                        The projects on this site are simplified and anonymised examples
+                        of real analytical work.
+                    </p>
+
+                </div>
+
             </div>
 
-            <div>
-                <p>
-                    The projects on this site are simplified and anonymised examples
-                    of real analytical work.
-                </p>
-            </div>
 
-        </div>
+            <div class="skills-column" id="skills">
 
-
-        <div class="skills-section" id="skills">
-
-            <div class="section-label">
-                Skills
-            </div>
-
-            <h2 class="skills-title">
-                Technical skills
-            </h2>
-
-            <div class="skills-grid">
-
-                <div class="skill">
-                    <strong>Power BI</strong>
-                    <span>DAX · Power Query · Data Modelling</span>
+                <div class="section-label">
+                    Skills
                 </div>
 
-                <div class="skill">
-                    <strong>SQL</strong>
-                    <span>PostgreSQL · CTEs · Window Functions</span>
-                </div>
+                <h2 class="about-title">
+                    Technical skills
+                </h2>
 
-                <div class="skill">
-                    <strong>Python</strong>
-                    <span>Pandas · APIs · Automation</span>
-                </div>
+                <div class="skills-grid">
 
-                <div class="skill">
-                    <strong>Power Platform</strong>
-                    <span>Power Automate · Power Apps</span>
-                </div>
+                    <div class="skill">
+                        <strong>Power BI</strong>
+                        <span>DAX · Power Query · Data Modelling</span>
+                    </div>
 
-                <div class="skill">
-                    <strong>Data Analysis</strong>
-                    <span>KPIs · Cohorts · Trends · A/B Testing</span>
-                </div>
+                    <div class="skill">
+                        <strong>SQL</strong>
+                        <span>PostgreSQL · CTEs · Window Functions</span>
+                    </div>
 
-                <div class="skill">
-                    <strong>Business Insight</strong>
-                    <span>Commercial · Customer · Operations</span>
+                    <div class="skill">
+                        <strong>Python</strong>
+                        <span>Pandas · APIs · Automation</span>
+                    </div>
+
+                    <div class="skill">
+                        <strong>Power Platform</strong>
+                        <span>Power Automate · Power Apps</span>
+                    </div>
+
+                    <div class="skill">
+                        <strong>Data Analysis</strong>
+                        <span>KPIs · Cohorts · Trends · A/B Testing</span>
+                    </div>
+
+                    <div class="skill">
+                        <strong>Business Insight</strong>
+                        <span>Commercial · Customer · Operations</span>
+                    </div>
+
                 </div>
 
             </div>
