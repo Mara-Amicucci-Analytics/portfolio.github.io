@@ -1196,7 +1196,7 @@
         <div class="container">
 
             <span
-                onclick="showHome()"
+                onclick="backToProjects()"
                 class="back-button"
             >
                 ← Back to portfolio
@@ -1530,6 +1530,21 @@ function showHome() {
 
 }
 
+/* =====================================================
+   BACK TO HOMEPAGE
+===================================================== */
+
+function backToProjects() {
+
+    document.getElementById("project-view").style.display = "none";
+    document.getElementById("home-view").style.display = "block";
+
+    setTimeout(() => {
+        document.getElementById("projects").scrollIntoView({
+            behavior: "smooth"
+        });
+    }, 50);
+}
 
 </script>
 
