@@ -48,7 +48,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 78px;
+            scroll-padding-top: 80px;
         }
 
 
@@ -331,24 +331,15 @@
            ABOUT
         ================================ */
 
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-            align-items: start;
+        #about {
+            scroll-margin-top: 80px;
         }
-
 
         .about-title {
             font-size: clamp(2rem, 4vw, 3.2rem);
             letter-spacing: -0.04em;
             line-height: 1.1;
-            margin: 0 0 38px;
-        }
-
-        .about-column,
-        .skills-column {
-            min-width: 0;
+            margin-bottom: 36px;
         }
 
         .about-text {
@@ -356,41 +347,56 @@
             font-size: 1.05rem;
         }
 
+        .about-text-columns {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 70px;
+            width: 100%;
+        }
 
         .about-text p {
             margin-bottom: 18px;
         }
 
+        .skills-section {
+            width: 100%;
+            margin-top: 52px;
+            scroll-margin-top: 80px;
+        }
+
+        .skills-title {
+            font-size: 1.55rem;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
 
         .skills-grid {
             display: grid;
-
-            grid-template-columns:
-                repeat(2,1fr);
-
+            grid-template-columns: repeat(6, minmax(0, 1fr));
             gap: 12px;
+            width: 100%;
         }
 
-
         .skill {
-            padding: 17px 18px;
+            padding: 16px 14px;
             background: white;
             border: 1px solid var(--border);
             border-radius: 11px;
+            min-width: 0;
         }
-
 
         .skill strong {
             display: block;
-
-            margin-bottom: 4px;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
         }
 
-
         .skill span {
+            display: block;
             color: var(--text-light);
-
-            font-size: 0.8rem;
+            font-size: 0.72rem;
+            line-height: 1.4;
         }
 
 
@@ -802,12 +808,6 @@
                 height: 120px;
             }
 
-        }
-
-        @media(max-width:420px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
         }
 
     </style>
