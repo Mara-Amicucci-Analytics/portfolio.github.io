@@ -48,6 +48,7 @@
 
         html {
             scroll-behavior: smooth;
+            scroll-padding-top: 78px;
         }
 
 
@@ -333,8 +334,7 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 70px;
-            align-items: start;
+            gap: 65px;
         }
 
 
@@ -348,6 +348,46 @@
         .about-column,
         .skills-column {
             min-width: 0;
+        }
+
+
+        .about-text-columns {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 65px;
+            max-width: 100%;
+        }
+
+        .skills-section {
+            margin-top: 58px;
+            padding-top: 4px;
+            scroll-margin-top: 82px;
+        }
+
+        .skills-title {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            letter-spacing: -0.035em;
+            line-height: 1.1;
+            margin: 0 0 24px;
+        }
+
+        .skills-inline {
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .skills-inline .skill {
+            padding: 15px 14px;
+            min-width: 0;
+        }
+
+        .skills-inline .skill strong {
+            font-size: 0.92rem;
+        }
+
+        .skills-inline .skill span {
+            font-size: 0.72rem;
+            line-height: 1.4;
         }
 
         .about-text {
@@ -715,6 +755,24 @@
            MOBILE
         ================================ */
 
+
+        @media(max-width:1100px) {
+            .skills-inline {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media(max-width:750px) {
+            .about-text-columns {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .skills-inline {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media(max-width:900px) {
 
             .hero-grid,
@@ -828,7 +886,7 @@
                 About
             </a>
 
-            <a href="#about" onclick="showHome()">
+            <a href="#skills" onclick="showHome()">
                 Skills
             </a>
 
@@ -932,83 +990,79 @@
 
     <div class="container">
 
-        <div class="about-grid">
+        <div class="section-label">
+            About me
+        </div>
 
-            <div class="about-column">
+        <h2 class="about-title">
+            About me
+        </h2>
 
-                <div class="section-label">
-                    About me
-                </div>
+        <div class="about-text about-text-columns">
 
-                <h2 class="about-title">
-                    About me
-                </h2>
+            <div>
+                <p>
+                    I work across data analysis, business intelligence and automation,
+                    with a strong focus on turning operational and customer data into
+                    useful information.
+                </p>
 
-                <div class="about-text">
-
-                    <p>
-                        I work across data analysis, business intelligence and automation,
-                        with a strong focus on turning operational and customer data into
-                        useful information.
-                    </p>
-
-                    <p>
-                        I enjoy understanding the real business problem behind a request
-                        and building solutions that are clear, practical and easy to use.
-                    </p>
-
-                    <p>
-                        The projects on this site are simplified and anonymised examples
-                        of real analytical work.
-                    </p>
-
-                </div>
-
+                <p>
+                    I enjoy understanding the real business problem behind a request
+                    and building solutions that are clear, practical and easy to use.
+                </p>
             </div>
 
+            <div>
+                <p>
+                    The projects on this site are simplified and anonymised examples
+                    of real analytical work.
+                </p>
+            </div>
 
-            <div class="skills-column" id="skills">
+        </div>
 
-                <div class="section-label">
-                    Skills
+
+        <div class="skills-section" id="skills">
+
+            <div class="section-label">
+                Skills
+            </div>
+
+            <h2 class="skills-title">
+                Technical skills
+            </h2>
+
+            <div class="skills-grid skills-inline">
+
+                <div class="skill">
+                    <strong>Power BI</strong>
+                    <span>DAX · Power Query · Data Modelling</span>
                 </div>
 
-                <h2 class="about-title">
-                    Technical skills
-                </h2>
+                <div class="skill">
+                    <strong>SQL</strong>
+                    <span>PostgreSQL · CTEs · Window Functions</span>
+                </div>
 
-                <div class="skills-grid">
+                <div class="skill">
+                    <strong>Python</strong>
+                    <span>Pandas · APIs · Automation</span>
+                </div>
 
-                    <div class="skill">
-                        <strong>Power BI</strong>
-                        <span>DAX · Power Query · Data Modelling</span>
-                    </div>
+                <div class="skill">
+                    <strong>Power Platform</strong>
+                    <span>Power Automate · Power Apps</span>
+                </div>
 
-                    <div class="skill">
-                        <strong>SQL</strong>
-                        <span>PostgreSQL · CTEs · Window Functions</span>
-                    </div>
+                <div class="skill">
+                    <strong>Data Analysis</strong>
+                    <span>KPIs · Cohorts · Trends · A/B Testing</span>
+                </div>
 
-                    <div class="skill">
-                        <strong>Python</strong>
-                        <span>Pandas · APIs · Automation</span>
-                    </div>
-
-                    <div class="skill">
-                        <strong>Power Platform</strong>
-                        <span>Power Automate · Power Apps</span>
-                    </div>
-
-                    <div class="skill">
-                        <strong>Data Analysis</strong>
-                        <span>KPIs · Cohorts · Trends · A/B Testing</span>
-                    </div>
-
-                    <div class="skill">
-                        <strong>Business Insight</strong>
-                        <span>Commercial · Customer · Operations</span>
-                    </div>
-
+                <div class="skill">
+                    <strong>Business Insight</strong>
+                    <span>Commercial · Customer · Operations</span>
                 </div>
 
             </div>
@@ -1153,10 +1207,10 @@ const projects = [
             "Analysed renewal performance using campaign and control groups, testing different offers across customer cohorts to identify which approach generated the strongest recontract rate.",
 
         image:
-            "images/p3.png",
+            "images/renewal-analysis.png",
 
         repository:
-            "portfolio.github.io"
+            "Power-BI-A-B-Testing-Analysis"
 
     },
 
@@ -1173,10 +1227,10 @@ const projects = [
             "Replaced a manual reporting process with an automated Python, PostgreSQL and Power BI pipeline, reducing preparation time and manual intervention.",
 
         image:
-            "images/p1.png",
+            "images/reporting-pipeline.png",
 
         repository:
-            "portfolio.github.io"
+            "Automated-Reporting-ETL-Pipeline"
 
     },
 
@@ -1193,10 +1247,10 @@ const projects = [
             "Built an operational reporting solution combining multiple data sources and business rules to identify blocked orders, ownership and required actions.",
 
         image:
-            "images/p4.png",
+            "images/order-management.png",
 
         repository:
-            "portfolio.github.io"
+            "YOUR-REPOSITORY-NAME-3"
 
     },
 
@@ -1213,10 +1267,10 @@ const projects = [
             "Automated customer communication workflows using CRM data, validation rules and APIs while creating clear reporting and auditability.",
 
         image:
-            "images/p2.png",
+            "images/customer-automation.png",
 
         repository:
-            "portfolio.github.io"
+            "YOUR-REPOSITORY-NAME-4"
 
     }
 
